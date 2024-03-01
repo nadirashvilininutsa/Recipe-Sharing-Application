@@ -1,1 +1,17 @@
 <p>main works!</p>
+
+<div *ngIf="!recipeDetails">
+  <div *ngFor="let recipe of recipes$ | async">
+    <app-recipe
+      [recipe]="recipe"
+      (displayDetails)="displayRecipeDetails($event)"
+    ></app-recipe>
+  </div>
+</div>
+
+<div *ngIf="recipeDetails">
+  <app-details
+    [recipeDetails]="recipeDetails"
+    (hideDetails)="hideRecipeDetails()"
+  ></app-details>
+</div>
