@@ -1,1 +1,8 @@
-<p>recipe works!</p>
+<h1>LIST OF ALL RECIPES</h1>
+
+<div *ngIf="recipe">
+  <img [src]="recipe.img" [alt]="recipe.title" />
+  <h1>{{ recipe.title }}</h1>
+  <p>{{ recipe.description }}</p>
+  <button (click)="displayRecipeDetails()">see full recipe</button>
+</div>

@@ -9,12 +9,12 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         pathMatch: 'full',
         component: MainComponent,
       },
       {
-        path: 'new-receipt',
+        path: 'new-recipe',
         component: NewRecipeComponent,
       },
     ],

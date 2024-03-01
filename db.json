@@ -1,1 +1,188 @@
-
+{
+  "recipes": [
+    {
+      "title": "Spaghetti Bolognese",
+      "description": "Classic Italian pasta dish with rich meat sauce",
+      "instruction": "Boil spaghetti until al dente, brown ground beef and onions, add tomato sauce and seasoning, simmer, and serve over cooked spaghetti.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 400, "unit": "g", "product": "Spaghetti" },
+        { "quantity": 500, "unit": "g", "product": "Ground beef" },
+        { "quantity": 1, "unit": "piece", "product": "Onion" },
+        { "quantity": 500, "unit": "ml", "product": "Tomato sauce" },
+        {
+          "quantity": 1,
+          "unit": "piece",
+          "product": "Salt, pepper, Italian seasoning"
+        }
+      ],
+      "recipeId": 1,
+      "authorId": 1
+    },
+    {
+      "title": "Caesar Salad",
+      "description": "Classic salad with Caesar dressing",
+      "instruction": "Toss romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "product": "Romaine lettuce" },
+        { "quantity": 100, "unit": "g", "product": "Croutons" },
+        { "quantity": 50, "unit": "g", "product": "Parmesan cheese" },
+        { "quantity": 100, "unit": "ml", "product": "Caesar dressing" }
+      ],
+      "recipeId": 2,
+      "authorId": 1
+    },
+    {
+      "title": "Chicken Stir-Fry",
+      "description": "Quick and flavorful Asian-inspired dish",
+      "instruction": "Stir-fry chicken and vegetables in a wok with soy sauce and garlic, serve over rice.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 500, "unit": "g", "product": "Chicken breast" },
+        { "quantity": 200, "unit": "g", "product": "Mixed vegetables" },
+        { "quantity": 50, "unit": "ml", "product": "Soy sauce" },
+        { "quantity": 2, "unit": "tsp", "product": "Minced garlic" },
+        { "quantity": 250, "unit": "g", "product": "Rice" }
+      ],
+      "recipeId": 3,
+      "authorId": 2
+    },
+    {
+      "title": "Margherita Pizza",
+      "description": "Simple and delicious Italian pizza",
+      "instruction": "Roll out pizza dough, top with tomato sauce, mozzarella cheese, and fresh basil, bake until crust is golden.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 500, "unit": "g", "product": "Pizza dough" },
+        { "quantity": 200, "unit": "ml", "product": "Tomato sauce" },
+        { "quantity": 200, "unit": "g", "product": "Mozzarella cheese" },
+        { "quantity": 1, "unit": "piece", "product": "Fresh basil leaves" }
+      ],
+      "recipeId": 4,
+      "authorId": 1
+    },
+    {
+      "title": "Chocolate Chip Cookies",
+      "description": "Classic homemade cookies with chocolate chips",
+      "instruction": "Cream together butter and sugar, mix in flour and chocolate chips, drop spoonfuls onto baking sheet, and bake until golden.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 200, "unit": "g", "product": "Butter" },
+        { "quantity": 150, "unit": "g", "product": "Sugar" },
+        { "quantity": 250, "unit": "g", "product": "Flour" },
+        { "quantity": 200, "unit": "g", "product": "Chocolate chips" }
+      ],
+      "recipeId": 5,
+      "authorId": 2
+    },
+    {
+      "title": "Vegetable Soup",
+      "description": "Hearty and nutritious soup with a variety of vegetables",
+      "instruction": "Simmer vegetables, broth, and seasoning until tender, serve hot.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "product": "Carrot" },
+        { "quantity": 1, "unit": "piece", "product": "Potato" },
+        { "quantity": 1, "unit": "piece", "product": "Onion" },
+        { "quantity": 2, "unit": "piece", "product": "Celery stalk" },
+        { "quantity": 1, "unit": "liter", "product": "Vegetable broth" },
+        { "quantity": 1, "unit": "piece", "product": "Salt, pepper, herbs" }
+      ],
+      "recipeId": 6,
+      "authorId": 4
+    },
+    {
+      "title": "Tacos",
+      "description": "Flavorful Mexican dish with seasoned meat and toppings",
+      "instruction": "Brown ground beef with taco seasoning, assemble tacos with meat, lettuce, tomato, cheese, and salsa.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 500, "unit": "g", "product": "Ground beef" },
+        { "quantity": 1, "unit": "piece", "product": "Onion" },
+        { "quantity": 1, "unit": "piece", "product": "Tomato" },
+        { "quantity": 200, "unit": "g", "product": "Lettuce" },
+        { "quantity": 200, "unit": "g", "product": "Cheese" },
+        { "quantity": 100, "unit": "ml", "product": "Salsa" },
+        { "quantity": 1, "unit": "piece", "product": "Taco seasoning" }
+      ],
+      "recipeId": 7,
+      "authorId": 5
+    },
+    {
+      "title": "Caesar Pasta Salad",
+      "description": "Refreshing pasta salad with Caesar dressing",
+      "instruction": "Cook pasta until al dente, toss with Caesar dressing, cherry tomatoes, and Parmesan cheese.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 300, "unit": "g", "product": "Pasta" },
+        { "quantity": 100, "unit": "ml", "product": "Caesar dressing" },
+        { "quantity": 200, "unit": "g", "product": "Cherry tomatoes" },
+        { "quantity": 50, "unit": "g", "product": "Parmesan cheese" }
+      ],
+      "recipeId": 8,
+      "authorId": 2
+    },
+    {
+      "title": "Beef Stew",
+      "description": "Hearty and comforting stew with tender beef and vegetables",
+      "instruction": "Brown beef, onions, and garlic, add broth, vegetables, and seasoning, simmer until beef is tender.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 500, "unit": "g", "product": "Stewing beef" },
+        { "quantity": 1, "unit": "piece", "product": "Onion" },
+        { "quantity": 2, "unit": "piece", "product": "Carrot" },
+        { "quantity": 2, "unit": "piece", "product": "Potato" },
+        { "quantity": 1, "unit": "liter", "product": "Beef broth" },
+        { "quantity": 1, "unit": "piece", "product": "Salt, pepper, herbs" }
+      ],
+      "recipeId": 9,
+      "authorId": 1
+    },
+    {
+      "title": "Fruit Smoothie",
+      "description": "Refreshing and nutritious beverage made with fresh fruit",
+      "instruction": "Blend together banana, berries, yogurt, and juice until smooth.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 1, "unit": "piece", "product": "Banana" },
+        { "quantity": 100, "unit": "g", "product": "Mixed berries" },
+        { "quantity": 200, "unit": "ml", "product": "Yogurt" },
+        { "quantity": 150, "unit": "ml", "product": "Orange juice" }
+      ],
+      "recipeId": 10,
+      "authorId": 5
+    },
+    {
+      "title": "Chicken Curry",
+      "description": "Delicious and aromatic curry dish with tender chicken",
+      "instruction": "Saute onions, garlic, and ginger, add chicken, curry paste, coconut milk, and vegetables, simmer until chicken is cooked through.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 500, "unit": "g", "product": "Chicken breast" },
+        { "quantity": 1, "unit": "piece", "product": "Onion" },
+        { "quantity": 2, "unit": "tsp", "product": "Minced garlic" },
+        { "quantity": 2, "unit": "tsp", "product": "Minced ginger" },
+        { "quantity": 100, "unit": "g", "product": "Curry paste" },
+        { "quantity": 400, "unit": "ml", "product": "Coconut milk" },
+        { "quantity": 200, "unit": "g", "product": "Mixed vegetables" }
+      ],
+      "recipeId": 11,
+      "authorId": 8
+    },
+    {
+      "title": "Pancakes",
+      "description": "Fluffy and delicious breakfast pancakes",
+      "instruction": "Mix together flour, milk, eggs, and sugar, cook on a hot griddle until golden brown.",
+      "img": "",
+      "ingredients": [
+        { "quantity": 200, "unit": "g", "product": "Flour" },
+        { "quantity": 300, "unit": "ml", "product": "Milk" },
+        { "quantity": 2, "unit": "piece", "product": "Eggs" },
+        { "quantity": 50, "unit": "g", "product": "Sugar" }
+      ],
+      "recipeId": 12,
+      "authorId": 10
+    }
+  ]
+}

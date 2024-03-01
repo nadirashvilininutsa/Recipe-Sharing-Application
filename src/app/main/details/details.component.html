@@ -1,1 +1,15 @@
-<p>details works!</p>
+<button (click)="navigateToRecipeList()">go back</button>
+
+<h1>RECIPE DETAILS</h1>
+
+<div *ngIf="recipeDetails">
+  <img [src]="recipeDetails.img" [alt]="recipeDetails.title" />
+  <h1>{{ recipeDetails.title }}</h1>
+  <p>{{ recipeDetails.description }}</p>
+  <p>{{ recipeDetails.instruction }}</p>
+  <div *ngFor="let ingredient of recipeDetails.ingredients">
+    <p>{{ ingredient.quantity }}</p>
+    <p>{{ ingredient.unit }}</p>
+    <p>{{ ingredient.product }}</p>
+  </div>
+</div>
