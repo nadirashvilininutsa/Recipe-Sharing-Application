@@ -1,0 +1,20 @@
+@import "../variables/colors.scss";
+@import "./fonts.scss";
+
+@mixin logo_basics {
+  @include font_basics();
+  cursor: pointer;
+  color: $primary_font_color_dark;
+}
+
+@mixin logo_homepage {
+  @include logo_basics();
+  text-transform: capitalize;
+  font-size: 3.7rem;
+}
+
+@mixin logo_header {
+  @include logo_basics();
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}

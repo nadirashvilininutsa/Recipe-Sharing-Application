@@ -6,6 +6,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { MainRoutingModule } from './main-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RecipeComponent,
     NewRecipeComponent,
   ],
-  imports: [CommonModule, MainRoutingModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    MainRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+  ],
 })
 export class MainModule {}

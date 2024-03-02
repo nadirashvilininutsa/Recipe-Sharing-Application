@@ -1,0 +1,116 @@
+@import "../../../scss/mixins/button_mixins.scss";
+@import "../../../scss/mixins/input.scss";
+@import "../../../scss/mixins/logo.scss";
+@import "../../../scss/variables/colors.scss";
+@import "../../../scss/mixins/fonts.scss";
+
+form {
+  margin: 0 auto;
+  padding: 0 1rem;
+  background-color: $primary_background_color;
+  max-width: 37.5rem;
+  min-width: fit-content;
+
+  @media only screen and (min-width: 768px) {
+    max-width: 76.8rem;
+
+    // width: 76.8rem;
+  }
+  @media only screen and (min-width: 1440px) {
+    // width: 144rem;
+  }
+
+  h2 {
+    @include font_main_title;
+    text-align: center;
+    margin: 1rem auto;
+  }
+
+  section {
+    .title {
+      @include font_form_title;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    input,
+    textarea,
+    select {
+      @include main_input;
+      background-color: $primary_font_color_light;
+
+      &.ng-touched {
+        &.ng-invalid {
+          background-color: $error_messages;
+        }
+      }
+    }
+
+    textarea {
+      height: 100%;
+      resize: none;
+    }
+  }
+
+  .error {
+    div {
+      @include font_error_messages;
+      margin-top: 0.5rem;
+    }
+  }
+
+  &.submitted {
+    input {
+      &.ng-invalid {
+        background-color: $error_messages;
+      }
+    }
+  }
+
+  .ingredients {
+    display: grid;
+    grid-template-columns: auto 5rem 5rem 2rem;
+    column-gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    @include primary_button;
+  }
+
+  .delete {
+    padding: 0;
+    display: flex;
+    background-color: transparent;
+
+    &:hover {
+      border: none;
+    }
+
+    &:disabled {
+      .material-icons {
+        color: $disabled_color;
+        cursor: default;
+      }
+    }
+
+    .material-icons {
+      font-size: 2.2rem;
+      padding: 0;
+      color: $primary_font_color_light;
+
+      &:enabled &:hover {
+        color: $secondary_background_color;
+      }
+    }
+  }
+
+  .submit {
+    width: 100%;
+    height: 2.5rem;
+    margin: 2rem auto;
+    text-transform: uppercase;
+    background-color: $secondary_background_color;
+    color: $primary_font_color_light;
+  }
+}
