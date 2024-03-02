@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
+import { NewRecipeComponent } from './main/new-recipe/new-recipe.component';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
+  },
+  {
+    path: 'new-recipe',
+    component: NewRecipeComponent,
   },
   {
     path: 'login',

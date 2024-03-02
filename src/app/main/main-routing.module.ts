@@ -13,10 +13,6 @@ const routes: Routes = [
         pathMatch: 'full',
         component: MainComponent,
       },
-      {
-        path: 'new-recipe',
-        component: NewRecipeComponent,
-      },
     ],
   },
 ];

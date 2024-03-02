@@ -1,1 +1,169 @@
-<p>new-recipe works!</p>
+<!-- <div *ngIf="form.form.controls['description'].errors && form.submitted">
+      <div *ngIf="form.form.controls['description'].errors['required']">
+        Description is required
+      </div>
+      <div *ngIf="form.form.controls['description'].errors['maxLength']">
+        Maximum length is 20 characters
+      </div>
+    </div> -->
+<form
+  [formGroup]="form"
+  (ngSubmit)="addNewRecipe()"
+  [class.submitted]="isSubmitted"
+>
+  <div>
+    <div class="title">Title:</div>
+    <div>
+      <input
+        type="text"
+        formControlName="title"
+        placeholder="Enter recipe title"
+      />
+    </div>
+  </div>
+  <div
+    class="error"
+    *ngIf="
+      (form.controls['title'].errors && form.controls['title'].touched) ||
+      (form.controls['title'].errors && isSubmitted)
+    "
+  >
+    <div *ngIf="form.controls['title'].errors['required']">
+      Title is required
+    </div>
+    <div *ngIf="form.controls['title'].errors['pattern']">
+      Title should contain only latin letters
+    </div>
+  </div>
+
+  <div>
+    <div class="title">Recipe Short Description:</div>
+    <div>
+      <input
+        type="text"
+        formControlName="description"
+        placeholder="Enter recipe description (max 100 characters)"
+      />
+    </div>
+  </div>
+  <div
+    class="error"
+    *ngIf="
+      (form.controls['description'].errors &&
+        form.controls['description'].touched) ||
+      (form.controls['description'].errors && isSubmitted)
+    "
+  >
+    <div *ngIf="form.controls['description'].errors['required']">
+      Description is required
+    </div>
+    <div *ngIf="form.controls['description'].errors['pattern']">
+      Max 100 characters
+    </div>
+  </div>
+
+  <div>
+    <div class="title">Recipe Detailed Instruction:</div>
+    <div>
+      <textarea
+        formControlName="instruction"
+        placeholder="Enter recipe instruction"
+        rows="5"
+      >
+      </textarea>
+    </div>
+  </div>
+  <div
+    class="error"
+    *ngIf="
+      (form.controls['instruction'].errors &&
+        form.controls['instruction'].touched) ||
+      (form.controls['instruction'].errors && isSubmitted)
+    "
+  >
+    <div *ngIf="form.controls['instruction'].errors['required']">
+      Instruction is required
+    </div>
+  </div>
+
+  <div>
+    <div class="title">List Ingredients:</div>
+    <div formArrayName="ingredients">
+      <div
+        *ngFor="
+          let ingredientControl of getIngredientsControls();
+          let i = index
+        "
+        [formGroupName]="i"
+      >
+        <input
+          type="string"
+          formControlName="ingredient"
+          placeholder="Enter ingredient name"
+        />
+        <input
+          type="number"
+          formControlName="quantity"
+          placeholder="Enter quantity"
+        />
+        <select formControlName="unit">
+          <option [value]="null" hidden>Select Unit</option>
+          <option *ngFor="let unit of units" [value]="unit">
+            {{ unit }}
+          </option>
+        </select>
+        <button
+          (click)="removeIngredientControl(i)"
+          [disabled]="removeBtnDisabled()"
+        >
+          X
+        </button>
+
+        <div class="error">
+          <div
+            *ngIf="
+              (getIngredientsControls()[i].get('ingredient')?.touched &&
+                getIngredientsControls()[i].get('ingredient')?.invalid) ||
+              (getIngredientsControls()[i].get('ingredient')?.invalid &&
+                isSubmitted)
+            "
+          >
+            Please indicate an ingredient
+          </div>
+          <div
+            *ngIf="
+              (getIngredientsControls()[i].get('quantity')?.touched &&
+                getIngredientsControls()[i].get('quantity')?.invalid) ||
+              (getIngredientsControls()[i].get('quantity')?.invalid &&
+                isSubmitted)
+            "
+          >
+            Please indicate quantity
+          </div>
+          <div
+            *ngIf="
+              (getIngredientsControls()[i].get('unit')?.touched &&
+                getIngredientsControls()[i].get('unit')?.invalid) ||
+              (getIngredientsControls()[i].get('unit')?.invalid && isSubmitted)
+            "
+          >
+            Please choose the unit
+          </div>
+        </div>
+
+        <button type="button" (click)="addIngredientControl()">
+          Add Ingredient
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="title">Upload Recipe Image:</div>
+    <div>
+      <input type="file" (change)="onImageUpload($event)" />
+    </div>
+  </div>
+
+  <button type="submit">Register</button>
+</form>
