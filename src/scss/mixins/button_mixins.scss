@@ -8,11 +8,29 @@
   text-transform: capitalize;
   background-color: $primary_font_color_light;
   color: $primary_font_color_dark;
-  border: 1px solid $primary_background_color;
+  border: none;
 
   &:hover {
     background-color: $primary_background_color;
-    border-color: $primary_font_color_light;
+    border: 0.1rem solid $primary_font_color_light;
+    color: $primary_font_color_light;
+  }
+}
+
+@mixin submit_button {
+  width: 100%;
+  height: 2.5rem;
+  margin: 2rem auto;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: $secondary_background_color;
+  color: $primary_font_color_light;
+  border: none;
+
+  &:hover {
+    background-color: $primary_background_color;
+    border: 0.2rem solid $secondary_background_color;
     color: $primary_font_color_light;
   }
 }

@@ -1,17 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonService } from '../services/common.service';
-import { Recipe, searchRecipe } from '../models/recipe-models';
-import {
-  Observable,
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-  of,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { Recipe } from '../models/recipe-models';
+import { Observable, debounceTime, distinctUntilChanged, map, of } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SearchRecipeForm } from '../models/form-models';
 
 @Component({
   selector: 'app-main',
@@ -40,7 +32,7 @@ export class MainComponent {
   form: FormGroup = this.buildForm();
 
   private buildForm() {
-    return this.fb.group<searchRecipe>({
+    return this.fb.group<SearchRecipeForm>({
       title: this.fb.control(''),
       ingredient: this.fb.control(''),
     });

@@ -1,0 +1,55 @@
+@import "../../../scss/mixins/button_mixins.scss";
+@import "../../../scss/mixins/input.scss";
+@import "../../../scss/variables/colors.scss";
+@import "../../../scss/mixins/fonts.scss";
+
+form {
+  margin: 0 auto;
+  padding: 0 1rem;
+  background-color: $primary_background_color;
+  max-width: 25rem;
+  min-width: fit-content;
+
+  h2 {
+    @include font_main_title;
+    text-align: center;
+    margin: 1rem auto;
+  }
+
+  section {
+    .title {
+      @include font_form_title;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      @include main_input;
+      background-color: $primary_font_color_light;
+
+      &.ng-touched {
+        &.ng-invalid {
+          background-color: $error_messages;
+        }
+      }
+    }
+  }
+
+  .error {
+    @include font_error_messages;
+    margin-top: 0.5rem;
+  }
+
+  &.submitted {
+    input {
+      &.ng-invalid {
+        background-color: $error_messages;
+      }
+    }
+  }
+
+  button {
+    @include submit_button;
+    margin-top: 4rem;
+  }
+}

@@ -1,6 +1,5 @@
 @import "../../../scss/mixins/button_mixins.scss";
 @import "../../../scss/mixins/input.scss";
-@import "../../../scss/mixins/logo.scss";
 @import "../../../scss/variables/colors.scss";
 @import "../../../scss/mixins/fonts.scss";
 
@@ -106,11 +105,6 @@ form {
   }
 
   .submit {
-    width: 100%;
-    height: 2.5rem;
-    margin: 2rem auto;
-    text-transform: uppercase;
-    background-color: $secondary_background_color;
-    color: $primary_font_color_light;
+    @include submit_button;
   }
 }

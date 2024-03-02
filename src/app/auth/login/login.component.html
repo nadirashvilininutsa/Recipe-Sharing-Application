@@ -1,1 +1,43 @@
-<p>login works!</p>
+<form [formGroup]="form" (ngSubmit)="login()" [class.submitted]="isSubmitted">
+  <h2>please log in</h2>
+  <section>
+    <div class="title">Email</div>
+    <div>
+      <input type="text" formControlName="email" placeholder="name@email.com" />
+    </div>
+  </section>
+
+  <div
+    class="error"
+    *ngIf="
+      (form.controls['email'].invalid && form.controls['email'].touched) ||
+      (form.controls['email'].invalid && isSubmitted)
+    "
+  >
+    Please enter valid email address
+  </div>
+
+  <section>
+    <div class="title">Password</div>
+    <div>
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="********"
+      />
+    </div>
+  </section>
+
+  <div
+    class="error"
+    *ngIf="
+      (form.controls['password'].invalid &&
+        form.controls['password'].touched) ||
+      (form.controls['password'].invalid && isSubmitted)
+    "
+  >
+    Please enter password
+  </div>
+
+  <button type="submit">Login</button>
+</form>
