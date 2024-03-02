@@ -421,8 +421,10 @@
       "authorId": 10
     }
   ],
-  "newIds": {
-    "newRecipeId": 14,
-    "newUserId": 11
+  "newRecipeId": {
+    "id": 14
+  },
+  "newUserId": {
+    "id": 12
   }
 }

@@ -36,27 +36,3 @@ export interface Recipe {
   recipeId: number;
   authorId: number;
 }
-
-export interface NewIds {
-  newRecipeId: number;
-  newUserId: number;
-}
-
-export interface NewRecipeForm {
-  title: FormControl<string | null>;
-  description: FormControl<string | null>;
-  instruction: FormControl<string | null>;
-  ingredients: FormArray<FormGroup<IngredientsForm>>;
-  image?: FormControl<[string] | null>;
-}
-
-export interface IngredientsForm {
-  quantity: FormControl<number | null>;
-  unit: FormControl<Unit | null>;
-  ingredient: FormControl<string | null>;
-}
-
-export interface searchRecipe {
-  title: FormControl<string | null>;
-  ingredient: FormControl<string | null>;
-}
