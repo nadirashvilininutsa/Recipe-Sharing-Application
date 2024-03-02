@@ -1,4 +1,5 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ignoreElements } from 'rxjs';
 
 export enum Unit {
   g = 'g',
@@ -52,5 +53,10 @@ export interface NewRecipeForm {
 export interface IngredientsForm {
   quantity: FormControl<number | null>;
   unit: FormControl<Unit | null>;
+  ingredient: FormControl<string | null>;
+}
+
+export interface searchRecipe {
+  title: FormControl<string | null>;
   ingredient: FormControl<string | null>;
 }
