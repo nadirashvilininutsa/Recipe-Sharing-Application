@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&display=swap");
+@import "../variables/colors.scss";
+
+@mixin font_basics {
+  font-family: "Hedvig Letters Sans", sans-serif;
+  font-style: normal;
+}
+
+// @mixin font_button_homepage {
+//   @include font_basics();
+//   font-size: 1rem;
+//   color: $primary_font_color_dark;
+//   font-weight: 400;
+// }
+
+// @mixin font_button_menu {
+//   @include font_basics();
+//   font-size: 0.95rem;
+//   line-height: 0.95rem;
+//   color: $primary_font_color_dark;
+//   font-weight: 400;
+// }
+
+@mixin font_regular_text {
+  @include font_basics();
+  font-size: 1rem;
+  line-height: 0.8rem;
+  text-weight: bold;
+  color: $primary_font_color_dark;
+  font-weight: 400;
+}
+
+@mixin font_main_title {
+  @include font_basics();
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: $primary_font_color_light;
+  font-weight: 600;
+}
+
+@mixin font_form_title {
+  @include font_basics();
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  color: $primary_font_color_light;
+  font-weight: 400;
+}
+
+@mixin font_placeholder {
+  @include font_basics();
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+  color: $placeholders;
+  font-weight: 300;
+}
+
+@mixin font_error_messages {
+  @include font_basics();
+  font-size: 1rem;
+  line-height: 1rem;
+  color: $error_messages;
+  font-weight: 300;
+}
+// @mixin font_h4 {
+//   @include font_basics();
+//   font-size: 0.8rem;
+//   text-transform: capitalize;
+//   color: $primary_font_color_light;
+//   font-weight: 500;
+// }
+
+// @mixin font_p {
+//   @include font_basics();
+//   font-size: 0.6rem;
+//   line-height: 0.6rem;
+//   color: $primary_font_color_light;
+//   font-weight: 300;
+// }

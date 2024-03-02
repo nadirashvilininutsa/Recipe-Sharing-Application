@@ -1,0 +1,18 @@
+@import "../variables/colors.scss";
+@import "./fonts.scss";
+
+@mixin primary_button {
+  height: 2.2rem;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  background-color: $primary_font_color_light;
+  color: $primary_font_color_dark;
+  border: 1px solid $primary_background_color;
+
+  &:hover {
+    background-color: $primary_background_color;
+    border-color: $primary_font_color_light;
+    color: $primary_font_color_light;
+  }
+}

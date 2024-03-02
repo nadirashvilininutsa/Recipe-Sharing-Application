@@ -11,7 +11,9 @@
   (ngSubmit)="addNewRecipe()"
   [class.submitted]="isSubmitted"
 >
-  <div>
+  <h2>submit a new recipe</h2>
+
+  <section>
     <div class="title">Title:</div>
     <div>
       <input
@@ -20,7 +22,7 @@
         placeholder="Enter recipe title"
       />
     </div>
-  </div>
+  </section>
   <div
     class="error"
     *ngIf="
@@ -36,7 +38,7 @@
     </div>
   </div>
 
-  <div>
+  <section>
     <div class="title">Recipe Short Description:</div>
     <div>
       <input
@@ -45,7 +47,7 @@
         placeholder="Enter recipe description (max 100 characters)"
       />
     </div>
-  </div>
+  </section>
   <div
     class="error"
     *ngIf="
@@ -62,7 +64,7 @@
     </div>
   </div>
 
-  <div>
+  <section>
     <div class="title">Recipe Detailed Instruction:</div>
     <div>
       <textarea
@@ -72,7 +74,7 @@
       >
       </textarea>
     </div>
-  </div>
+  </section>
   <div
     class="error"
     *ngIf="
@@ -86,10 +88,11 @@
     </div>
   </div>
 
-  <div>
+  <section>
     <div class="title">List Ingredients:</div>
     <div formArrayName="ingredients">
       <div
+        class="ingredients"
         *ngFor="
           let ingredientControl of getIngredientsControls();
           let i = index
@@ -97,26 +100,29 @@
         [formGroupName]="i"
       >
         <input
+          class="ingredient"
           type="string"
           formControlName="ingredient"
-          placeholder="Enter ingredient name"
+          placeholder="Ingredient name"
         />
         <input
+          class="quantity"
           type="number"
           formControlName="quantity"
-          placeholder="Enter quantity"
+          placeholder="Qty"
         />
         <select formControlName="unit">
-          <option [value]="null" hidden>Select Unit</option>
+          <option [value]="null" hidden>Unit</option>
           <option *ngFor="let unit of units" [value]="unit">
             {{ unit }}
           </option>
         </select>
         <button
+          class="delete"
           (click)="removeIngredientControl(i)"
           [disabled]="removeBtnDisabled()"
         >
-          X
+          <mat-icon>delete</mat-icon>
         </button>
 
         <div class="error">
@@ -150,20 +156,23 @@
             Please choose the unit
           </div>
         </div>
-
-        <button type="button" (click)="addIngredientControl()">
-          Add Ingredient
-        </button>
       </div>
+      <button
+        class="add_ingredient"
+        type="button"
+        (click)="addIngredientControl()"
+      >
+        Add Ingredient
+      </button>
     </div>
-  </div>
+  </section>
 
-  <div>
+  <section>
     <div class="title">Upload Recipe Image:</div>
     <div>
       <input type="file" (change)="onImageUpload($event)" />
     </div>
-  </div>
+  </section>
 
-  <button type="submit">Register</button>
+  <button class="submit" type="submit">Register</button>
 </form>

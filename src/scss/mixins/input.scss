@@ -1,0 +1,26 @@
+@import "../../scss/variables/colors.scss";
+@import "./fonts.scss";
+
+@mixin input_basic {
+  width: 100%;
+  padding-left: 0.3rem;
+  @include font_regular_text;
+
+  &::placeholder {
+    @include font_placeholder;
+  }
+}
+
+@mixin main_input {
+  @include input_basic;
+  height: 2.2rem;
+  border-radius: 0.1rem;
+  border: none;
+}
+
+// @mixin search_input {
+//   @include input_basic;
+//   height: 2.2rem;
+//   border: none;
+//   margin: 0.2rem auto;
+// }
