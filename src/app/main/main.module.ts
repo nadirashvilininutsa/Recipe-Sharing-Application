@@ -5,6 +5,7 @@ import { DetailsComponent } from './details/details.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { MainRoutingModule } from './main-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,6 @@ import { MainRoutingModule } from './main-routing.module';
     RecipeComponent,
     NewRecipeComponent,
   ],
-  imports: [CommonModule, MainRoutingModule],
+  imports: [CommonModule, MainRoutingModule, ReactiveFormsModule, FormsModule],
 })
 export class MainModule {}

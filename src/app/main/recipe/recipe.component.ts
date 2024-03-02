@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Recipe } from 'src/app/models/api-models';
+import { Recipe } from 'src/app/models/recipe-models';
 
 @Component({
   selector: 'app-recipe',
