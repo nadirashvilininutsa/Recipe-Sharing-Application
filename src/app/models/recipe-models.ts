@@ -19,6 +19,7 @@ export enum Unit {
   dL = 'dL',
   cL = 'cL',
   piece = 'piece',
+  pinch = 'pinch',
 }
 
 export interface Ingredient {

@@ -4,7 +4,7 @@
 @mixin logo_basics {
   @include font_basics();
   cursor: pointer;
-  color: $primary_font_color_dark;
+  color: $primary_font_color;
 }
 
 @mixin logo_homepage {

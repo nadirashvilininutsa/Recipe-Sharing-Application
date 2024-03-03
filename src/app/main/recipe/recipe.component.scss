@@ -1,0 +1,71 @@
+@import "../../../scss/mixins/button_mixins.scss";
+@import "../../../scss/variables/colors.scss";
+@import "../../../scss/mixins/fonts.scss";
+
+section {
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+  width: 30rem;
+
+  .img {
+    margin: 0 auto;
+    width: 20rem;
+    height: 30rem;
+    align-items: center;
+    display: flex;
+
+    background: rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.9px);
+    -webkit-backdrop-filter: blur(5.9px);
+    border: 1px solid rgba(0, 0, 0, 0.11);
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    img[alt] {
+      @include font_regular_text;
+    }
+  }
+
+  .info {
+    padding: 1rem 0;
+
+    h2 {
+      @include font_main_title;
+      text-align: center;
+    }
+
+    h4 {
+      @include font_h4;
+      text-align: center;
+    }
+
+    button {
+      @include submit_button;
+      margin: 3rem auto 0 auto;
+      width: fit-content;
+      display: block;
+    }
+  }
+
+  @media only screen and (min-width: 500px) {
+    grid-template-columns: 20rem 26rem;
+    width: 50rem;
+
+    .info {
+      h2,
+      h4 {
+        text-align: left;
+      }
+
+      button {
+        margin-left: 0;
+      }
+    }
+  }
+}

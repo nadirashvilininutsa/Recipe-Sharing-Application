@@ -1,15 +1,30 @@
-<button (click)="navigateToRecipeList()">go back</button>
+<div class="container">
+  <button (click)="navigateToRecipeList()">go back</button>
+  <h1>RECIPE DETAILS</h1>
 
-<h1>RECIPE DETAILS</h1>
+  <section *ngIf="recipeDetails">
+    <div class="img">
+      <img
+        [src]="'data:image/jpeg;base64,' + recipeDetails.img"
+        [alt]="recipeDetails.title"
+      />
+    </div>
 
-<div *ngIf="recipeDetails">
-  <img [src]="recipeDetails.img" [alt]="recipeDetails.title" />
-  <h1>{{ recipeDetails.title }}</h1>
-  <p>{{ recipeDetails.description }}</p>
-  <p>{{ recipeDetails.instruction }}</p>
-  <div *ngFor="let ingredient of recipeDetails.ingredients">
-    <p>{{ ingredient.quantity }}</p>
-    <p>{{ ingredient.unit }}</p>
-    <p>{{ ingredient.product }}</p>
-  </div>
+    <div>
+      <h2>{{ recipeDetails.title }}</h2>
+      <h4>{{ recipeDetails.description }}</h4>
+
+      <section class="ingredients">
+        <h3>Ingredients</h3>
+        <ul *ngFor="let ingredient of recipeDetails.ingredients">
+          <li>{{ ingredient.quantity }}</li>
+          <li>{{ ingredient.unit }}</li>
+          <li class="product">{{ ingredient.product }}</li>
+        </ul>
+      </section>
+    </div>
+
+    <h3>Cooking Instructions</h3>
+    <p class="instruction">{{ recipeDetails.instruction }}</p>
+  </section>
 </div>

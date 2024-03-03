@@ -1,25 +1,27 @@
-<form class="search" [formGroup]="form">
-  <input
-    type="text"
-    formControlName="title"
-    (ngModelChange)="filterRecipe()"
-    placeholder="Search by Title"
-  />
-  <input
-    type="text"
-    formControlName="ingredient"
-    (ngModelChange)="filterRecipe()"
-    placeholder="Search by Ingredient"
-  />
-</form>
+<div class="all_recipes" *ngIf="!recipeDetails">
+  <h1>search for a recipe</h1>
+  <form class="search" [formGroup]="form">
+    <input
+      type="text"
+      formControlName="title"
+      (ngModelChange)="filterRecipe()"
+      placeholder="Search by Title"
+    />
+    <input
+      type="text"
+      formControlName="ingredient"
+      (ngModelChange)="filterRecipe()"
+      placeholder="Search by Ingredient"
+    />
+  </form>
 
-<div *ngIf="!recipeDetails">
-  <div *ngFor="let recipe of filteredRecipes$ | async">
+  <h1>list of recipes</h1>
+  <section *ngFor="let recipe of filteredRecipes$ | async">
     <app-recipe
       [recipe]="recipe"
       (displayDetails)="displayRecipeDetails($event)"
     ></app-recipe>
-  </div>
+  </section>
 </div>
 
 <div *ngIf="recipeDetails">
