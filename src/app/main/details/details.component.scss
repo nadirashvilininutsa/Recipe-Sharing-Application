@@ -1,0 +1,133 @@
+@import "../../../scss/mixins/button_mixins.scss";
+@import "../../../scss/variables/colors.scss";
+@import "../../../scss/mixins/fonts.scss";
+
+.container {
+  margin: 0 auto;
+  width: 32rem;
+
+  @media only screen and (min-width: 500px) {
+    width: 50rem;
+    padding: 0 1rem;
+  }
+
+  button {
+    @include submit_button;
+    margin: 0;
+    width: fit-content;
+    display: block;
+  }
+
+  h1 {
+    @include font_h1;
+    text-align: center;
+    margin: 1rem auto 2rem auto;
+  }
+
+  h2 {
+    @include font_main_title;
+    text-align: center;
+  }
+
+  h3 {
+    @include font_h3;
+    text-align: center;
+    margin: 0 auto 0.5rem 0;
+  }
+
+  h4 {
+    @include font_h4;
+    text-align: center;
+  }
+
+  p {
+    @include font_regular_text;
+    line-height: 1.2rem;
+  }
+
+  section {
+    border: 0.1rem dashed $primary_font_color_light;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+    width: 32rem;
+    padding: 1rem;
+
+    .img {
+      margin: 0 auto;
+      width: 20rem;
+      height: 30rem;
+      align-items: center;
+      display: flex;
+
+      background: rgba(0, 0, 0, 0.19);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5.9px);
+      -webkit-backdrop-filter: blur(5.9px);
+      border: 1px solid rgba(0, 0, 0, 0.11);
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        // margin: auto 0;
+      }
+
+      img[alt] {
+        @include font_regular_text;
+      }
+    }
+
+    .ingredients {
+      border: none;
+      display: block;
+      width: 20rem;
+      height: fit-content;
+      margin-bottom: 1rem;
+
+      ul {
+        margin: 0 auto;
+        border-bottom: 0.1rem dashed $primary_font_color_light;
+        display: grid;
+        grid-template-columns: 2rem 4rem auto;
+        gap: 1rem;
+        padding: 0.4rem 0.5rem;
+
+        li {
+          @include font_regular_text;
+          line-height: 1.2rem;
+          text-align: center;
+          list-style-type: none;
+          align-self: center;
+
+          &.product {
+            margin-left: 1rem;
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: 500px) {
+      grid-template-columns: 20rem auto;
+      width: 50rem;
+
+      h4 {
+        text-align: left;
+      }
+
+      .ingredients {
+        width: auto;
+      }
+
+      p {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+
+      .img {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

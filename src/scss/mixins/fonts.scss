@@ -6,27 +6,12 @@
   font-style: normal;
 }
 
-// @mixin font_button_homepage {
-//   @include font_basics();
-//   font-size: 1rem;
-//   color: $primary_font_color_dark;
-//   font-weight: 400;
-// }
-
-// @mixin font_button_menu {
-//   @include font_basics();
-//   font-size: 0.95rem;
-//   line-height: 0.95rem;
-//   color: $primary_font_color_dark;
-//   font-weight: 400;
-// }
-
 @mixin font_regular_text {
   @include font_basics();
   font-size: 1rem;
   line-height: 0.8rem;
   text-weight: bold;
-  color: $primary_font_color_dark;
+  color: $primary_font_color_light;
   font-weight: 400;
 }
 
@@ -34,8 +19,33 @@
   @include font_basics();
   font-size: 1.5rem;
   text-transform: uppercase;
+  color: $primary_font_color_dark;
+  font-weight: 600;
+}
+
+@mixin font_h1 {
+  @include font_basics();
+  font-size: 2rem;
+  text-transform: uppercase;
   color: $primary_font_color_light;
   font-weight: 600;
+}
+
+@mixin font_h3 {
+  @include font_basics();
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+  color: $primary_font_color_light;
+  font-weight: 500;
+}
+
+@mixin font_h4 {
+  @include font_basics();
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  color: $primary_font_color_light;
+  font-weight: 500;
 }
 
 @mixin font_form_title {
@@ -61,18 +71,3 @@
   color: $error_messages;
   font-weight: 300;
 }
-// @mixin font_h4 {
-//   @include font_basics();
-//   font-size: 0.8rem;
-//   text-transform: capitalize;
-//   color: $primary_font_color_light;
-//   font-weight: 500;
-// }
-
-// @mixin font_p {
-//   @include font_basics();
-//   font-size: 0.6rem;
-//   line-height: 0.6rem;
-//   color: $primary_font_color_light;
-//   font-weight: 300;
-// }

@@ -1,0 +1,55 @@
+@import "../../scss/mixins/button_mixins.scss";
+@import "../../scss/mixins/input.scss";
+@import "../../scss/variables/colors.scss";
+@import "../../scss/mixins/fonts.scss";
+
+h1 {
+  @include font_h1;
+  text-align: center;
+  margin: 0 auto;
+}
+
+form {
+  width: 35rem;
+  margin: 0 auto 2rem auto;
+  padding: 1rem;
+
+  input {
+    @include main_input;
+    background-color: $primary_font_color_light;
+    margin: 1rem auto;
+    @include font_regular_text;
+    color: $primary_background_color;
+  }
+
+  @media only screen and (min-width: 500px) {
+    display: flex;
+    justify-content: space-between;
+    width: 50rem;
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    input {
+      margin: 0;
+    }
+  }
+}
+
+.all_recipes {
+  padding: 0 1rem;
+
+  section {
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 0.1rem dashed $primary_font_color_light;
+
+    @media only screen and (min-width: 500px) {
+      max-width: 50rem;
+    }
+  }
+}
+
+div {
+  padding-bottom: 5rem;
+}
