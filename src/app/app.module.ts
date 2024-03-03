@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatIconModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [],

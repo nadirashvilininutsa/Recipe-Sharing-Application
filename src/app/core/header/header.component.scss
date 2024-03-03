@@ -1,0 +1,42 @@
+@import "../../../scss/mixins/button_mixins.scss";
+@import "../../../scss/mixins/input.scss";
+@import "../../../scss/variables/colors.scss";
+@import "../../../scss/mixins/fonts.scss";
+
+div {
+  width: 33rem;
+  margin: 0 auto;
+  height: 3rem;
+  margin-bottom: 2rem;
+  border-bottom: 0.2rem solid $primary_font_color_light;
+
+  @media only screen and (min-width: 500px) {
+    width: 50rem;
+  }
+
+  h1 {
+    @include logo;
+    float: right;
+    height: 3rem;
+    cursor: pointer;
+  }
+
+  mat-icon {
+    float: left;
+    cursor: pointer;
+    color: primary_font_color_light;
+  }
+
+  .menu {
+    width: 12rem;
+    position: absolute;
+    top: 3rem;
+    background-color: $primary_font_color_light;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      @include header_button;
+    }
+  }
+}

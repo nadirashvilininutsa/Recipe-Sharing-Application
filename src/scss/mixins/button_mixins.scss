@@ -2,6 +2,7 @@
 @import "./fonts.scss";
 
 @mixin primary_button {
+  @include font_basics;
   height: 2.2rem;
   border-radius: 0.1rem;
   cursor: pointer;
@@ -34,6 +35,7 @@
 // }
 
 @mixin submit_button {
+  @include font_basics;
   width: 100%;
   height: 2.5rem;
   margin: 2rem auto;
@@ -47,6 +49,23 @@
   &:hover {
     background-color: $primary_background_color;
     border: 0.2rem solid $secondary_background_color;
+    color: $primary_font_color_light;
+  }
+}
+
+@mixin header_button {
+  @include font_basics;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  height: 3rem;
+  border: none;
+  border-bottom: 0.2rem solid $primary_background_color;
+  background-color: $primary_font_color_light;
+  color: $primary_background_color;
+
+  &:hover {
+    background-color: $primary_background_color;
     color: $primary_font_color_light;
   }
 }

@@ -4,6 +4,7 @@ import { Recipe } from '../models/recipe-models';
 import { Observable, debounceTime, distinctUntilChanged, map, of } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SearchRecipeForm } from '../models/form-models';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,11 @@ import { SearchRecipeForm } from '../models/form-models';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  constructor(private commonService: CommonService, private fb: FormBuilder) {}
+  constructor(
+    private commonService: CommonService,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   recipes$: Observable<Recipe[]> = of();
   filteredRecipes$: Observable<Recipe[]> = of();
@@ -74,5 +79,6 @@ export class MainComponent {
   ngOnInit() {
     this.recipes$ = this.getRecipeList();
     this.filteredRecipes$ = this.recipes$;
+    this.authService.getCurrentUser();
   }
 }

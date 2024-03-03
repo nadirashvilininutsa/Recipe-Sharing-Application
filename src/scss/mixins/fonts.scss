@@ -71,3 +71,11 @@
   color: $error_messages;
   font-weight: 300;
 }
+
+@mixin logo {
+  @include font_basics();
+  text-transform: capitalize;
+  color: $primary_font_color_light;
+  font-size: 2rem;
+  font-weight: 600;
+}
