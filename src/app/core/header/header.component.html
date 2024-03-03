@@ -1,1 +1,21 @@
-<p>header works!</p>
+<div>
+  <h1>plate swap</h1>
+
+  <mat-icon class="menu-toggle" (click)="toggleMenu()">menu</mat-icon>
+
+  <div class="menu" *ngIf="menuOpen">
+    <button (click)="toggleMenu()" routerLink="">home</button>
+
+    <ng-container *ngIf="currentUser$ | async; else anonymUser">
+      <button (click)="toggleMenu()">Favorites</button>
+      <button (click)="toggleMenu()">My Recipes</button>
+      <button (click)="toggleMenu()" routerLink="new-recipe">New Recipe</button>
+      <button (click)="logOut()">Logout</button>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #anonymUser>
+  <button (click)="toggleMenu()" routerLink="login">login</button>
+  <button (click)="toggleMenu()" routerLink="register">register</button>
+</ng-template>

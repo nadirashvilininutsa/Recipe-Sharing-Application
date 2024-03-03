@@ -10,13 +10,8 @@ form {
   max-width: 37.5rem;
   min-width: fit-content;
 
-  @media only screen and (min-width: 768px) {
-    max-width: 76.8rem;
-
-    // width: 76.8rem;
-  }
-  @media only screen and (min-width: 1440px) {
-    // width: 144rem;
+  @media only screen and (min-width: 500) {
+    max-width: 50rem;
   }
 
   h2 {

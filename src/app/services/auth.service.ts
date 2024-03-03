@@ -81,7 +81,10 @@ export class AuthService {
     this.auth
       .signOut()
       .then(() => (this.currentUserDetails$ = this.getCurrentUser()))
-      .then(() => this.router.navigate(['']))
+      .then(() => {
+        this.router.navigate(['']);
+        alert('You have successfully logged out');
+      })
       .catch(() => {
         alert('Log out unsuccessful');
       });
