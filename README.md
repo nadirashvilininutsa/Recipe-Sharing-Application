@@ -23,8 +23,13 @@ Mixins and color variables are used for styling commonly used elements.
 # Installation and Setup
 
 Clone the repository.
+
 Install Node.js and npm.
+
 Navigate to the project folder.
+
 Run npm install to install all the dependencies.
-Run nom run server to run db.json file
+
+Run nom run server to run db.json file.
+
 Run npm start for a local dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
