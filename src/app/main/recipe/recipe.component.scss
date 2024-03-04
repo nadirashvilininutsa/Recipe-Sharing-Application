@@ -33,7 +33,24 @@ section {
   }
 
   .info {
-    padding: 1rem 0;
+    padding: 0;
+
+    .user_buttons {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin: 0;
+        @include button_icon;
+
+        mat-icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
 
     h2 {
       @include font_main_title;
@@ -45,7 +62,7 @@ section {
       text-align: center;
     }
 
-    button {
+    .open_button {
       @include submit_button;
       margin: 3rem auto 0 auto;
       width: fit-content;

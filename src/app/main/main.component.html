@@ -20,6 +20,9 @@
     <app-recipe
       [recipe]="recipe"
       (displayDetails)="displayRecipeDetails($event)"
+      (recipeEdit)="onRecipeEdit($event)"
+      (recipeDeleted)="onRecipeDeleted($event)"
+      (addToFavorites)="addToFavorites($event)"
     ></app-recipe>
   </section>
 </div>

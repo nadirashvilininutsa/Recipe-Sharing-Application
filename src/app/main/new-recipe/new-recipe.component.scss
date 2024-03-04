@@ -79,6 +79,22 @@ form {
 
   button {
     @include primary_button;
+
+    &:disabled {
+      color: $disabled_color;
+      cursor: default;
+      // background-color: $disabled_color;
+
+      &:hover {
+        color: $disabled_color;
+        background-color: $secondary_background_color;
+        border: none;
+      }
+    }
+
+    &.cancell {
+      margin-top: 0;
+    }
   }
 
   .delete {

@@ -1,0 +1,40 @@
+@import "../../../scss/mixins/button_mixins.scss";
+@import "../../../scss/mixins/input.scss";
+@import "../../../scss/variables/colors.scss";
+@import "../../../scss/mixins/fonts.scss";
+
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: $primary_background_color;
+  width: 30rem;
+
+  h4 {
+    @include font_h4;
+    margin: 2rem auto 1rem auto;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  div {
+    display: flex;
+    gap: 2rem;
+  }
+
+  button {
+    @include submit_button;
+    width: 100%;
+
+    &.cancel {
+      background-color: $primary_background_color;
+      border: 0.2rem solid $secondary_background_color;
+      color: $primary_font_color_light;
+
+      &:hover {
+        background-color: $secondary_background_color;
+        color: $primary_font_color_light;
+        border: none;
+      }
+    }
+  }
+}

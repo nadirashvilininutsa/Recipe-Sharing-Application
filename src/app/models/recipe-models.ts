@@ -28,12 +28,25 @@ export interface Ingredient {
   product: string;
 }
 
-export interface Recipe {
+export interface RecipeSubmission {
   title: string;
   description: string;
   instruction: string;
   ingredients: Ingredient[];
   img?: string;
+  authorId: number;
+}
+export interface Recipe extends RecipeSubmission {
+  id: number;
+}
+export interface recipeAdditionalDetails {
   recipeId: number;
   authorId: number;
 }
+
+export interface RecipeEdit {
+  recipe: Recipe;
+  additionalInfo: recipeAdditionalDetails;
+}
+
+export type RecipeKeys = keyof Recipe;
