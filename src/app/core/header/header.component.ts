@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { UserDetails } from 'src/app/models/auth-models';
+import { UserEmail } from 'src/app/models/auth-models';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,8 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent {
   constructor(private authService: AuthService, private router: Router) {}
-  currentUser$: Observable<UserDetails | undefined> =
-    this.authService.currentUserDetails$;
+  currentUser$: Observable<UserEmail | undefined> =
+    this.authService.currentUserInfo$;
+  userId: number | undefined = this.authService.currentUserId;
 
   user: boolean = true;
   menuOpen: boolean = false;
@@ -25,5 +26,10 @@ export class HeaderComponent {
     this.authService.logOutUser();
     this.toggleMenu();
     this.router.navigate(['']);
+  }
+
+  ngOnInit() {
+    console.log('header');
+    this.currentUser$.subscribe(console.log);
   }
 }

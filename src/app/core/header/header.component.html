@@ -6,12 +6,13 @@
   <div class="menu" *ngIf="menuOpen">
     <button (click)="toggleMenu()" routerLink="">home</button>
 
-    <ng-container *ngIf="currentUser$ | async; else anonymUser">
+    <ng-container *ngIf="currentUser$ | async as user; else anonymUser">
+      <div>{{ user | json }}</div>
       <button (click)="toggleMenu()">Favorites</button>
       <button (click)="toggleMenu()">My Recipes</button>
       <button (click)="toggleMenu()" routerLink="new-recipe">New Recipe</button>
-      <button (click)="logOut()">Logout</button>
     </ng-container>
+    <button (click)="logOut()">Logout</button>
   </div>
 </div>
 

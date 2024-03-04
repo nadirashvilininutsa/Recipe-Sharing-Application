@@ -47,29 +47,14 @@ export class RegisterComponent {
 
     if (this.form.valid) {
       console.log('form is valid');
-      this.authService
-        .getUserId()
-        .pipe(
-          take(1),
-          tap((userId) => {
-            const id: number = userId.id;
-
-            console.log('ID is: ', id);
-
-            const user: RegisterUser = {
-              email: this.form.controls['email'].value,
-              password: this.form.controls['password'].value,
-              details: {
-                id: id,
-                firstName: this.form.controls['firstName'].value,
-                lastName: this.form.controls['lastName'].value,
-              },
-            };
-
-            this.authService.registerUser(user);
-          })
-        )
-        .subscribe();
+      const user: RegisterUser = {
+        email: this.form.controls['email'].value,
+        password: this.form.controls['password'].value,
+        firstName: this.form.controls['firstName'].value,
+        lastName: this.form.controls['lastName'].value,
+        recipeIds: [],
+      };
+      this.authService.registerUser(user);
     }
   }
 }

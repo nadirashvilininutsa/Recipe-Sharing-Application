@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  Optional,
+  ViewChild,
+} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -6,9 +12,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Recipe, Unit } from 'src/app/models/recipe-models';
+import { Ingredient, Recipe, Unit } from 'src/app/models/recipe-models';
 import { IngredientsForm, NewRecipeForm } from 'src/app/models/form-models';
 import { CommonService } from 'src/app/services/common.service';
+import { switchMap, take, tap } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/auth-models';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-recipe',
@@ -16,17 +26,26 @@ import { CommonService } from 'src/app/services/common.service';
   styleUrls: ['./new-recipe.component.scss'],
 })
 export class NewRecipeComponent {
-  constructor(private fb: FormBuilder, private commonService: CommonService) {}
+  constructor(
+    private fb: FormBuilder,
+    private commonService: CommonService,
+    private authService: AuthService,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data?: Recipe
+  ) {}
 
   isSubmitted: boolean = false;
   form: FormGroup = this.buildForm();
   units: string[] = Object.values(Unit);
 
+  chosenFileName?: string;
+  @ViewChild('fileUpload')
+  fileUpload?: ElementRef;
+
   private buildForm() {
     return this.fb.group<NewRecipeForm>({
       title: this.fb.control('', [
         Validators.required,
-        Validators.pattern('^[a-zA-Z]+$'),
+        Validators.pattern('^[a-zA-Z ]+$'),
       ]),
       description: this.fb.control('', [
         Validators.required,
@@ -37,13 +56,13 @@ export class NewRecipeComponent {
         this.fb.group<IngredientsForm>({
           quantity: this.fb.control(null, [Validators.required]),
           unit: this.fb.control(null, [Validators.required]),
-          ingredient: this.fb.control('', [
+          product: this.fb.control('', [
             Validators.required,
             Validators.pattern('^[a-zA-Z]+$'),
           ]),
         }),
       ]),
-      image: this.fb.control(['']),
+      img: this.fb.control(['']),
     });
   }
 
@@ -58,9 +77,9 @@ export class NewRecipeComponent {
         this.fb.group<IngredientsForm>({
           quantity: this.fb.control(null, [Validators.required]),
           unit: this.fb.control(null, [Validators.required]),
-          ingredient: this.fb.control('', [
+          product: this.fb.control('', [
             Validators.required,
-            Validators.pattern('^[a-zA-Z]+$'),
+            Validators.pattern('^[a-zA-Z ]+$'),
           ]),
         })
       );
@@ -74,20 +93,19 @@ export class NewRecipeComponent {
     }
   }
 
-  // imageFile: File | null = null;
-  // imageBase64: string | null = null;
   onImageUpload(e: Event) {
     const event = e.target as HTMLInputElement;
     if (event.files && event.files.length > 0) {
-      let imageFile: File | null = event.files[0];
+      this.chosenFileName = event?.['files'][0].name;
+      let imgFile: File | null = event.files[0];
       const reader = new FileReader();
       reader.onload = () => {
-        const imageControl = this.form.get('image');
-        if (imageControl) {
-          imageControl.setValue(reader.result as string);
+        const imgControl = this.form.get('img');
+        if (imgControl) {
+          imgControl.setValue(reader.result as string);
         }
       };
-      reader.readAsDataURL(imageFile);
+      reader.readAsDataURL(imgFile);
     }
   }
 
@@ -98,48 +116,59 @@ export class NewRecipeComponent {
     return false;
   }
 
-  addNewRecipe() {
-    this.isSubmitted = true;
-    console.log(this.form);
+  addNewRecipe(event: Event) {
+    event.preventDefault();
+    // this.isSubmitted = true;
+    // console.log(this.form);
+    // if (this.form.valid) {
+    //   console.log('Form is valid');
+    //   const formData: FormData = new FormData();
+    //   for (let controlName in this.form.controls) {
+    //     formData.append(controlName, this.form.controls[controlName].value);
+    //   }
+    //   let authorId: string | undefined =
+    //     this.authService.currentUserId?.toString();
+    //   if (authorId) {
+    //     formData.append('authorId', authorId);
+    //   }
+    //   this.commonService.postNewRecipe(formData);
+    // }
+  }
 
-    if (this.form.valid) {
-      console.log('Form is valid');
-
-      const formData: FormData = new FormData();
-
-      for (let controlName in this.form.controls) {
-        formData.append(controlName, this.form.controls[controlName].value);
-      }
-
-      // if (this.imageFile) {
-      //   formData.append('image', this.imageFile);
-      // }
-      formData.append('authorId', 'bla');
-      // this.commonService.postNewRecipe(formData);
-    }
+  clickFileUpload() {
+    if (this.fileUpload) this.fileUpload.nativeElement.click();
   }
 
   ngOnInit() {
-    let test: Recipe = {
-      title: 'test',
-      description: 'test',
-      instruction: 'test',
-      img: '',
-      ingredients: [
-        {
-          quantity: 1,
-          unit: Unit.kg,
-          product: 'test',
-        },
-      ],
-      recipeId: 1,
-      authorId: 1,
-    };
-    this.commonService.postNewRecipe(test);
-    // console.log('from service');
-    // this.commonService.getIds().subscribe();
-    // this.commonService
-    //   .updateIds({ newRecipeId: 14, newUserId: 11 })
-    //   .subscribe();
+    if (this.data) {
+      const createIngredientFormGroup = (ingredient: Ingredient): FormGroup => {
+        return this.fb.group({
+          quantity: [ingredient.quantity, Validators.required],
+          unit: [ingredient.unit, Validators.required],
+          product: [
+            ingredient.product,
+            [
+              Validators.required,
+              Validators.pattern('^[a-zA-Z ]+$'), // Assuming ingredients can have spaces
+            ],
+          ],
+        });
+      };
+      const rebuildIngredientsFormArray = (ingredients: Ingredient[]): void => {
+        const ingredientsFormArray = this.form.get('ingredients') as FormArray;
+        ingredientsFormArray.clear();
+
+        ingredients.forEach((ingredient) => {
+          ingredientsFormArray.push(createIngredientFormGroup(ingredient));
+        });
+      };
+      this.form.patchValue({
+        title: this.data.title,
+        description: this.data.description,
+        instruction: this.data.instruction,
+        img: this.data.img,
+      });
+      rebuildIngredientsFormArray(this.data.ingredients);
+    }
   }
 }

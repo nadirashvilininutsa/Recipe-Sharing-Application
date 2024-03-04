@@ -44,6 +44,15 @@ form {
       height: 100%;
       resize: none;
     }
+
+    button {
+      display: flex;
+      align-items: center;
+    }
+
+    p {
+      margin: 0.1rem;
+    }
   }
 
   .error {
@@ -102,4 +111,8 @@ form {
   .submit {
     @include submit_button;
   }
+}
+
+.hidden-file-upload {
+  display: none;
 }
