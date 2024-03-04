@@ -31,6 +31,7 @@ export interface User extends UserEmail {
   firstName: string;
   lastName: string;
   recipeIds: number[];
+  favorites: number[];
 }
 
 export interface UserFullInto extends User {

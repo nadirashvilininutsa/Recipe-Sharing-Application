@@ -8,6 +8,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     DetailsComponent,
     RecipeComponent,
     NewRecipeComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,

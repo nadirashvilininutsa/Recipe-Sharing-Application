@@ -46,13 +46,13 @@ export class RegisterComponent {
     this.isSubmitted = true;
 
     if (this.form.valid) {
-      console.log('form is valid');
       const user: RegisterUser = {
         email: this.form.controls['email'].value,
         password: this.form.controls['password'].value,
         firstName: this.form.controls['firstName'].value,
         lastName: this.form.controls['lastName'].value,
         recipeIds: [],
+        favorites: [],
       };
       this.authService.registerUser(user);
     }

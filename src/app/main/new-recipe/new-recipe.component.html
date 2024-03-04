@@ -100,6 +100,7 @@
         <input
           class="quantity"
           type="number"
+          min="0"
           formControlName="quantity"
           placeholder="Qty"
         />
@@ -126,7 +127,8 @@
                 isSubmitted)
             "
           >
-            Please indicate an ingredient
+            Please indicate an ingredient. Ingredient should only contain latin
+            letters.
           </div>
           <div
             *ngIf="
@@ -162,7 +164,7 @@
   <section>
     <div class="title">Upload Recipe Image:</div>
     <div>
-      <button mat-raised-button color="primary" (click)="clickFileUpload()">
+      <button (click)="clickFileUpload()" type="button">
         <mat-icon>add</mat-icon><span>Choose</span>
       </button>
       <input
@@ -176,6 +178,19 @@
   </section>
 
   <button *ngIf="!data" class="submit" type="submit">Register</button>
-  <button *ngIf="data" class="submit" type="submit">Update</button>
-  <button *ngIf="data" class="submit" type="submit">Cancel</button>
+  <button
+    *ngIf="data"
+    class="submit"
+    [mat-dialog-close]="{
+      recipe: this.form.value,
+      additionalInfo: recipeAdditionalDetails
+    }"
+    type="button"
+    [disabled]="!form.valid"
+  >
+    Update
+  </button>
+  <button *ngIf="data" class="submit cancell" mat-dialog-close type="button">
+    Cancel
+  </button>
 </form>

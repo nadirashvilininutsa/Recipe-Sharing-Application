@@ -2,9 +2,36 @@
   <div class="img">
     <img [src]="'data:image/jpeg;base64,' + recipe.img" [alt]="recipe.title" />
   </div>
-  <div class="info">
+
+  <div class="info" *ngIf="currentUser$ | async as currentUser">
+    <div
+      class="user_buttons"
+      *ngIf="currentUser.id === recipe.authorId; else starButton"
+    >
+      <button (click)="openEdit(recipe)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button (click)="openDelete()">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+      <button (click)="addToFavorite()">
+        <mat-icon *ngIf="favorite">star</mat-icon>
+        <mat-icon *ngIf="!favorite">star_border</mat-icon>
+      </button>
+    </div>
+
     <h2>{{ recipe.title }}</h2>
     <h4>{{ recipe.description }}</h4>
-    <button (click)="displayRecipeDetails()">see full recipe</button>
+    <button class="open_button" (click)="displayRecipeDetails()">
+      see full recipe
+    </button>
   </div>
 </section>
+
+<ng-template #starButton>
+  <div class="user_buttons">
+    <button (click)="addToFavorite()">
+      <mat-icon>star_border</mat-icon>
+    </button>
+  </div>
+</ng-template>

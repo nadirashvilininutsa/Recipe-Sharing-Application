@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { UserEmail } from 'src/app/models/auth-models';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { UserEmail, UserFullInto } from 'src/app/models/auth-models';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent {
   constructor(private authService: AuthService, private router: Router) {}
-  currentUser$: Observable<UserEmail | undefined> =
+  currentUser$: BehaviorSubject<UserFullInto | undefined> =
     this.authService.currentUserInfo$;
   userId: number | undefined = this.authService.currentUserId;
 
@@ -29,7 +29,6 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    console.log('header');
-    this.currentUser$.subscribe(console.log);
+    this.currentUser$.subscribe();
   }
 }

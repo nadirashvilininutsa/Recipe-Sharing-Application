@@ -18,21 +18,20 @@
   }
 }
 
-// @mixin secondary_button {
-//   width: 100%;
-//   height: 2.5rem;
-//   border: none;
-//   cursor: pointer;
-//   text-transform: capitalize;
-//   background-color: transparent;
-//   border-bottom: 0.1rem solid $primary_font_color_light;
-//   color: $primary_font_color_light;
+@mixin button_icon {
+  background: none;
+  border: none;
 
-//   &:hover {
-//     border-bottom: 0.2rem solid $secondary_background_color;
-//     color: $secondary_background_color;
-//   }
-// }
+  @include font_basics;
+  width: fit-content;
+  cursor: pointer;
+  background-color: transparent;
+  color: $primary_font_color_light;
+
+  &:hover {
+    color: $secondary_background_color;
+  }
+}
 
 @mixin submit_button {
   @include font_basics;
