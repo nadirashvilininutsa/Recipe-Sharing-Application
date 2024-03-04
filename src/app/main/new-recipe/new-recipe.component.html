@@ -1,14 +1,6 @@
-<!-- <div *ngIf="form.form.controls['description'].errors && form.submitted">
-      <div *ngIf="form.form.controls['description'].errors['required']">
-        Description is required
-      </div>
-      <div *ngIf="form.form.controls['description'].errors['maxLength']">
-        Maximum length is 20 characters
-      </div>
-    </div> -->
 <form
   [formGroup]="form"
-  (ngSubmit)="addNewRecipe()"
+  (ngSubmit)="addNewRecipe($event)"
   [class.submitted]="isSubmitted"
 >
   <h2>submit a new recipe</h2>
@@ -102,7 +94,7 @@
         <input
           class="ingredient"
           type="string"
-          formControlName="ingredient"
+          formControlName="product"
           placeholder="Ingredient name"
         />
         <input
@@ -128,9 +120,9 @@
         <div class="error">
           <div
             *ngIf="
-              (getIngredientsControls()[i].get('ingredient')?.touched &&
-                getIngredientsControls()[i].get('ingredient')?.invalid) ||
-              (getIngredientsControls()[i].get('ingredient')?.invalid &&
+              (getIngredientsControls()[i].get('product')?.touched &&
+                getIngredientsControls()[i].get('product')?.invalid) ||
+              (getIngredientsControls()[i].get('product')?.invalid &&
                 isSubmitted)
             "
           >
@@ -170,9 +162,20 @@
   <section>
     <div class="title">Upload Recipe Image:</div>
     <div>
-      <input type="file" (change)="onImageUpload($event)" />
+      <button mat-raised-button color="primary" (click)="clickFileUpload()">
+        <mat-icon>add</mat-icon><span>Choose</span>
+      </button>
+      <input
+        class="hidden-file-upload"
+        #fileUpload
+        type="file"
+        (change)="onImageUpload($event)"
+      />
     </div>
+    <p *ngIf="chosenFileName">{{ chosenFileName }}</p>
   </section>
 
-  <button class="submit" type="submit">Register</button>
+  <button *ngIf="!data" class="submit" type="submit">Register</button>
+  <button *ngIf="data" class="submit" type="submit">Update</button>
+  <button *ngIf="data" class="submit" type="submit">Cancel</button>
 </form>

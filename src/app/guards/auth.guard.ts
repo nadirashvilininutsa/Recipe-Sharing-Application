@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, filter, map, take } from 'rxjs';
-import { UserDetails } from '../models/auth-models';
+import { UserEmail, UserFullInto } from '../models/auth-models';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -16,8 +16,8 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
 
-  currentUser$: Observable<UserDetails | undefined> =
-    this.authService.getCurrentUser();
+  currentUser$: Observable<UserFullInto | undefined> =
+    this.authService.currentUserInfo$;
 
   canActivate(
     route: ActivatedRouteSnapshot,

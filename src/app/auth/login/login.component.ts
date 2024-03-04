@@ -27,6 +27,8 @@ export class LoginComponent {
       const email: string = this.form.controls['email'].value;
       const password: string = this.form.controls['password'].value;
 
+      console.log('inside component');
+
       this.authService.logInUser(email, password);
     }
   }

@@ -7,6 +7,7 @@ import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { MainRoutingModule } from './main-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
+    MatDialogModule,
   ],
 })
 export class MainModule {}

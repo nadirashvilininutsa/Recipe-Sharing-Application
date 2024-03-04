@@ -5,6 +5,7 @@
   width: 100%;
   padding-left: 0.3rem;
   @include font_regular_text;
+  color: $primary_background_color;
 
   &::placeholder {
     @include font_placeholder;

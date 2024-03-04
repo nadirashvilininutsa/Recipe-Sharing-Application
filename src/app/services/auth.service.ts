@@ -4,50 +4,104 @@ import { Observable, from, map, of, switchMap, take, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { NewId, RegisterUser, UserDetails } from '../models/auth-models';
+import {
+  RegisterUser,
+  User,
+  UserEmail,
+  UserFullInto,
+} from '../models/auth-models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  // registerUser(user: RegisterUser) {
+  //   // const id = user.details.id! + 1;
+  //   // const newId = { id: id };
+  //   this.auth
+  //     .createUserWithEmailAndPassword(user.email, user.password)
+  //       if (userCredential.user) {
+  //         return from(
+  //           userCredential.user.updateProfile({
+  //             displayName: JSON.stringify(user.details),
+  //           })
+  //         );
+  //       }
+  //       return of();
+  //     })
+  //     .then(() =>
+  //       (this.currentUserInfo$ = this.getCurrentUser())
+  //         .pipe(
+  //           take(1),
+  //           switchMap(() => {
+  //             const newUser: User = {
+  //               email: user.email,
+  //               recipeIds: [],
+  //               details: {
+  //                 firstName: user.details.firstName,
+  //                 lastName: user.details.lastName,
+  //                 id: user.details.id,
+  //               },
+  //             };
+  //             return this.postNewUser(newUser);
+  //           }),
+  //           switchMap(() => this.updateUserId(newId)),
+  //           tap(() => {
+  //             alert('You have successfully registered');
+  //             this.router.navigate(['']);
+  //           })
+  //         )
+  //         .subscribe()
+  //     )
+  //     .catch((error) => {
+  //       if (error.code === 'auth/invalid-email') {
+  //         alert('Please enter valid email');
+  //       } else if (error.code === 'auth/email-already-in-use') {
+  //         alert('Email is already in use');
+  //       } else {
+  //         alert('New user could not be registered. Please try again later');
+  //       }
+  //     });
+  // }
+
   constructor(
     private http: HttpClient,
     private auth: AngularFireAuth,
     private router: Router
   ) {}
 
-  currentUserDetails$: Observable<UserDetails | undefined> =
-    this.getCurrentUser();
+  currentUserInfo$: Observable<UserFullInto | undefined> = of(undefined);
   currentUserId: number | undefined;
 
   registerUser(user: RegisterUser) {
-    const id = user.details.id + 1;
-    const newId = { id: id };
-    console.log(id);
     this.auth
       .createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredential) => {
-        if (userCredential.user) {
-          return from(
-            userCredential.user.updateProfile({
-              displayName: JSON.stringify(user.details),
-            })
-          );
-        }
-        return of();
-      })
-      .then(() =>
-        (this.currentUserDetails$ = this.getCurrentUser())
+        if (!userCredential.user) return;
+
+        const newUser: User = {
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          recipeIds: [],
+        };
+
+        return this.postNewUser(newUser)
           .pipe(
             take(1),
-            switchMap(() => this.updateUserId(newId)),
-            tap(() => {
+            tap((user) => {
+              const userFullInfo: UserFullInto = {
+                ...newUser,
+                id: user.id,
+              };
+              this.currentUserInfo$ = of(userFullInfo);
+              this.currentUserId = user.id;
               alert('You have successfully registered');
               this.router.navigate(['']);
             })
           )
-          .subscribe()
-      )
+          .subscribe();
+      })
       .catch((error) => {
         if (error.code === 'auth/invalid-email') {
           alert('Please enter valid email');
@@ -62,9 +116,8 @@ export class AuthService {
   logInUser(email: string, password: string) {
     this.auth
       .signInWithEmailAndPassword(email, password)
-      .then(() => (this.currentUserDetails$ = this.getCurrentUser()))
       .then(() => {
-        this.router.navigate(['']);
+        return this.getCurrentUser();
       })
       .catch((error) => {
         if (error.code === 'auth/invalid-email') {
@@ -80,8 +133,9 @@ export class AuthService {
   logOutUser() {
     this.auth
       .signOut()
-      .then(() => (this.currentUserDetails$ = this.getCurrentUser()))
       .then(() => {
+        this.currentUserInfo$ = of();
+        this.currentUserId = undefined;
         this.router.navigate(['']);
         alert('You have successfully logged out');
       })
@@ -90,25 +144,36 @@ export class AuthService {
       });
   }
 
-  getCurrentUser(): Observable<UserDetails | undefined> {
-    return this.auth.authState.pipe(
-      switchMap((currentUser) => {
-        let userDetails: UserDetails | undefined;
-        if (currentUser?.displayName) {
-          userDetails = JSON.parse(currentUser.displayName) as UserDetails;
-          this.currentUserId = userDetails.id;
-        }
-        this.router.navigate(['']);
-        return of(userDetails);
-      })
+  getCurrentUser() {
+    this.auth.authState
+      .pipe(
+        take(1),
+        switchMap((currentUser) => {
+          if (!currentUser?.email) return of(undefined);
+          return this.getCurrentUserDetails(currentUser.email).pipe(
+            tap((user) => {
+              if (user) {
+                this.currentUserInfo$ = of(user);
+                this.currentUserId = user.id;
+                this.router.navigate(['']);
+              }
+            })
+          );
+        })
+      )
+      .subscribe();
+  }
+
+  getCurrentUserDetails(email: string): Observable<UserFullInto> {
+    return this.http
+      .get<UserFullInto[]>(`${environment.jsonServerBase}/users`)
+      .pipe(switchMap((users) => users.filter((user) => user.email === email)));
+  }
+
+  postNewUser(user: User): Observable<UserFullInto> {
+    return this.http.post<UserFullInto>(
+      `${environment.jsonServerBase}/users`,
+      user
     );
-  }
-
-  getUserId(): Observable<NewId> {
-    return this.http.get<NewId>(`${environment.jsonServerBase}/newUserId`);
-  }
-
-  updateUserId(id: NewId): Observable<NewId> {
-    return this.http.put<NewId>(`${environment.jsonServerBase}/newUserId`, id);
   }
 }

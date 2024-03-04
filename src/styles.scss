@@ -11,16 +11,24 @@ html {
   font-size: 62.5%;
   margin: 0 auto;
   background-color: $primary_background_color;
-
-  //   width: 37.5rem;
-
-  //   @media only screen and (min-width: 768px) {
-  //     width: 76.8rem;
-  //   }
-  //   @media only screen and (min-width: 1440px) {
-  //     width: 144rem;
-  //   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.recipe-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+  background: none;
+  border-radius: 0;
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

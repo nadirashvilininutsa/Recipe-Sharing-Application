@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable, filter, first, map, take } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { UserDetails } from '../models/auth-models';
+import { UserEmail, UserFullInto } from '../models/auth-models';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +16,8 @@ import { UserDetails } from '../models/auth-models';
 export class AnonymGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
 
-  currentUser$: Observable<UserDetails | undefined> =
-    this.authService.getCurrentUser();
+  currentUser$: Observable<UserFullInto | undefined> =
+    this.authService.currentUserInfo$;
 
   canActivate(
     route: ActivatedRouteSnapshot,

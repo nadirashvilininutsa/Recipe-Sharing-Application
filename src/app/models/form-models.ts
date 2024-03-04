@@ -19,13 +19,13 @@ export interface NewRecipeForm {
   description: FormControl<string | null>;
   instruction: FormControl<string | null>;
   ingredients: FormArray<FormGroup<IngredientsForm>>;
-  image?: FormControl<[string] | null>;
+  img?: FormControl<[string] | null>;
 }
 
 export interface IngredientsForm {
   quantity: FormControl<number | null>;
   unit: FormControl<Unit | null>;
-  ingredient: FormControl<string | null>;
+  product: FormControl<string | null>;
 }
 
 export interface SearchRecipeForm {
